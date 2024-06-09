@@ -31,7 +31,7 @@ func _physics_process(delta):
 
 
 func getInputDir():
-	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down").normalized()
+	var input_dir = Input.get_vector("left", "right", "forward", "back").normalized()
 	return input_dir
 
 
