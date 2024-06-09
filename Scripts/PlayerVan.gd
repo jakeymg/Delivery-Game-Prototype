@@ -9,6 +9,7 @@ var acceleration = 0.03
 # The lower this is the less the vehicle will slide
 var slideDamp = 0.1
 var tyreRotation = 90.0
+var rideHeight = 0.25
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -18,7 +19,7 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-
+	
 	 #Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
@@ -50,9 +51,17 @@ func rotMovement():
 	if input_dir.y:
 		velocity.z = lerp(velocity.z, ((move_dir.z + (slide_dir.z * slideDamp)) * SPEED), acceleration)
 		velocity.x = lerp(velocity.x, ((move_dir.x + (slide_dir.x * slideDamp)) * SPEED), acceleration)
+		if is_on_floor():
+			$BackLCPUParticles3D.emitting = true
+			$BackRCPUParticles3D.emitting = true
+		else:
+			$BackLCPUParticles3D.emitting = false
+			$BackRCPUParticles3D.emitting = false
 	else:
 		velocity.z = lerp(velocity.z, 0.0, 0.05)
 		velocity.x = lerp(velocity.x, 0.0, 0.05)
+		$BackLCPUParticles3D.emitting = false
+		$BackRCPUParticles3D.emitting = false
 	
 	# Left and Right rotation
 	if input_dir.x and rollingSpeed > 0.2:
@@ -92,3 +101,4 @@ func align_with_y(xform, new_y):
 	xform.basis.x = -xform.basis.z.cross(new_y)
 	xform.basis = xform.basis.orthonormalized()
 	return xform
+
