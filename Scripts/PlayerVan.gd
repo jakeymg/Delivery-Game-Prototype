@@ -10,6 +10,7 @@ var acceleration = 0.03
 var slideDamp = 0.1
 var tyreRotation = 90.0
 var rideHeight = 0.25
+var groundParticleColor : Color
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -27,6 +28,7 @@ func _physics_process(delta):
 	rotTyres()
 	rotMovement()
 	alignWithGroundNormal()
+	getGroundColour()
 	
 	move_and_slide()
 
@@ -51,17 +53,23 @@ func rotMovement():
 	if input_dir.y:
 		velocity.z = lerp(velocity.z, ((move_dir.z + (slide_dir.z * slideDamp)) * SPEED), acceleration)
 		velocity.x = lerp(velocity.x, ((move_dir.x + (slide_dir.x * slideDamp)) * SPEED), acceleration)
+		# only play particles when vehicle is touching the ground
 		if is_on_floor():
-			$BackLCPUParticles3D.emitting = true
-			$BackRCPUParticles3D.emitting = true
+			$DustParticleNode.setOnOff(true)
+			$DustParticleNode2.setOnOff(true)
 		else:
-			$BackLCPUParticles3D.emitting = false
-			$BackRCPUParticles3D.emitting = false
+			$DustParticleNode.setOnOff(false)
+			$DustParticleNode2.setOnOff(false)
+		# changes the rotation pivot over front and back wheels based on current move dir
+		if input_dir.y < 0:
+			$GroundRayCast3D.position = Vector3(0, 0.25, -0.5)
+		else:
+			$GroundRayCast3D.position = Vector3(0, 0.25, 0.5)
 	else:
 		velocity.z = lerp(velocity.z, 0.0, 0.05)
 		velocity.x = lerp(velocity.x, 0.0, 0.05)
-		$BackLCPUParticles3D.emitting = false
-		$BackRCPUParticles3D.emitting = false
+		$DustParticleNode.setOnOff(false)
+		$DustParticleNode2.setOnOff(false)
 	
 	# Left and Right rotation
 	if input_dir.x and rollingSpeed > 0.2:
@@ -88,12 +96,13 @@ func rotTyres():
 	$WheelFrontLMesh.set_rotation_degrees(Vector3(90,tyreRotation,0))
 	$WheelFrontRMesh.set_rotation_degrees(Vector3(90,tyreRotation,0))
 
-
+# rotates the vehicle to align with the current normal of the ground
 func alignWithGroundNormal():
 	if $GroundRayCast3D.is_colliding():
 		var normal = $GroundRayCast3D.get_collision_normal()
 		var xform = align_with_y(global_transform, normal)
-		global_transform = global_transform.interpolate_with(xform, 0.1)
+		if is_on_floor():
+			global_transform = global_transform.interpolate_with(xform, 0.1)
 
 
 func align_with_y(xform, new_y):
@@ -102,3 +111,13 @@ func align_with_y(xform, new_y):
 	xform.basis = xform.basis.orthonormalized()
 	return xform
 
+# looks for the group of the ground underneath to influence particle color, can eventually adjust to pass in a color from pixel detection
+func getGroundColour():
+	if $GetGroundColourRayCast3D.is_colliding():
+		var collision = $GetGroundColourRayCast3D.get_collider()
+		if collision.is_in_group("Ground"):
+			groundParticleColor = "brown"
+		elif collision.is_in_group("White"):
+			groundParticleColor = "white"
+		$DustParticleNode.setParticleColour(groundParticleColor)
+		$DustParticleNode2.setParticleColour(groundParticleColor)

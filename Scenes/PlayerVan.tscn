@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://3n6ngv0e6pn1"]
+[gd_scene load_steps=11 format=3 uid="uid://3n6ngv0e6pn1"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerVan.gd" id="1_e487s"]
+[ext_resource type="PackedScene" uid="uid://caub0pgty8gja" path="res://Scenes/dust_particle_node.tscn" id="2_cd7i5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7ywkk"]
 
@@ -31,29 +32,12 @@ bottom_radius = 0.2
 height = 0.2
 radial_segments = 8
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vb3us"]
-transparency = 1
-vertex_color_use_as_albedo = true
-
-[sub_resource type="SphereMesh" id="SphereMesh_xaekg"]
-material = SubResource("StandardMaterial3D_vb3us")
-radial_segments = 6
-rings = 6
-
-[sub_resource type="Curve" id="Curve_0ql50"]
-_data = [Vector2(0, 0.142857), 0.0, 0.0, 0, 0, Vector2(0.242105, 0.351648), 0.0, 0.0, 0, 0, Vector2(0.747191, 0), -0.0416177, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="Gradient" id="Gradient_4wtmu"]
-offsets = PackedFloat32Array(0, 0.648148)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
-
 [node name="PlayerVan" type="CharacterBody3D" groups=["Player"]]
-floor_max_angle = 1.0472
+floor_max_angle = 0.872665
 script = ExtResource("1_e487s")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.25, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.358348, 0)
 shape = SubResource("CapsuleShape3D_7ywkk")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
@@ -65,10 +49,11 @@ transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, -0.
 shape = SubResource("CapsuleShape3D_skj2q")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.108348, 0)
 mesh = SubResource("BoxMesh_x1k8x")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.358348, -0.5)
 mesh = SubResource("BoxMesh_4d1uj")
 skeleton = NodePath("../MeshInstance3D")
 
@@ -90,32 +75,13 @@ mesh = SubResource("CylinderMesh_0nkf1")
 
 [node name="GroundRayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -0.5)
-target_position = Vector3(0, -2, 0)
+target_position = Vector3(0, -3, 0)
 
-[node name="BackLCPUParticles3D" type="CPUParticles3D" parent="."]
+[node name="GetGroundColourRayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0.5)
+
+[node name="DustParticleNode" parent="." instance=ExtResource("2_cd7i5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.5, 0.5)
-emitting = false
-amount = 12
-preprocess = 1.0
-randomness = 1.0
-lifetime_randomness = 1.0
-mesh = SubResource("SphereMesh_xaekg")
-direction = Vector3(0, 0, 0)
-spread = 30.0
-gravity = Vector3(0, 1, 0)
-scale_amount_curve = SubResource("Curve_0ql50")
-color_ramp = SubResource("Gradient_4wtmu")
 
-[node name="BackRCPUParticles3D" type="CPUParticles3D" parent="."]
+[node name="DustParticleNode2" parent="." instance=ExtResource("2_cd7i5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.5, 0.5)
-emitting = false
-amount = 12
-preprocess = 1.0
-randomness = 1.0
-lifetime_randomness = 1.0
-mesh = SubResource("SphereMesh_xaekg")
-direction = Vector3(0, 0, 0)
-spread = 30.0
-gravity = Vector3(0, 1, 0)
-scale_amount_curve = SubResource("Curve_0ql50")
-color_ramp = SubResource("Gradient_4wtmu")

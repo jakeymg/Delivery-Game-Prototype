@@ -4,9 +4,11 @@ icon.svg::CompressedTexture2D::8810542173889356207::1717913458::1717913520::1:::
 README.md::TextFile::-1::1717913458::0::1::::<><>::
 ::res://Scenes/::1717913457
 Camera.tscn::PackedScene::2353528418969906829::1717913458::0::1::::<><>::res://Scripts/Camera.gd
-PlayerVan.tscn::PackedScene::1994030323487668648::1717916672::0::1::::<><>::res://Scripts/PlayerVan.gd
-test_scene.tscn::PackedScene::3751134825345995336::1717916646::0::1::::<><>::uid://3n6ngv0e6pn1::::res://Scenes/PlayerVan.tscn<>uid://8scjfg4f5rg4::::res://Scenes/Camera.tscn
+PlayerVan.tscn::PackedScene::1994030323487668648::1717980402::0::1::::<><>::res://Scripts/PlayerVan.gd<>uid://caub0pgty8gja::::res://Scenes/dust_particle_node.tscn
+dust_particle_node.tscn::PackedScene::4814235082323514546::1717980088::0::1::::<><>::res://Scenes/dust_particle_node.gd
+dust_particle_node.gd::GDScript::-1::1717979010::0::1::::<>Node3D<>::
+test_scene.tscn::PackedScene::3751134825345995336::1717980362::0::1::::<><>::uid://3n6ngv0e6pn1::::res://Scenes/PlayerVan.tscn<>uid://8scjfg4f5rg4::::res://Scenes/Camera.tscn
 ::res://Scripts/::1717913457
 Camera.gd::GDScript::-1::1717913458::0::1::::<>Marker3D<>::
 new.gd::GDScript::-1::1717913458::0::1::::<>CharacterBody3D<>::
-PlayerVan.gd::GDScript::-1::1717916672::0::1::::<>CharacterBody3D<>::
+PlayerVan.gd::GDScript::-1::1717979608::0::1::::<>CharacterBody3D<>::
