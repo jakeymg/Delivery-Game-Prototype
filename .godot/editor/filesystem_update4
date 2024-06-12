@@ -1,6 +1,3 @@
-res://Scenes/dust_particle_node.tscn
-res://Scenes/PlayerVan.tscn
-res://Scripts/PlayerVan.gd
 res://Scenes/test_scene.tscn
-res://Scenes/dust_particle_node.gd
-res://Scripts/dust_particle_node.gd
+res://Scenes/PlayerVan.tscn
+res://Scenes/Camera.tscn

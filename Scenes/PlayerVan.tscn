@@ -33,7 +33,7 @@ height = 0.2
 radial_segments = 8
 
 [node name="PlayerVan" type="CharacterBody3D" groups=["Player"]]
-floor_max_angle = 0.872665
+floor_max_angle = 1.0472
 script = ExtResource("1_e487s")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
