@@ -87,9 +87,9 @@ size = Vector3(5, 5, 5)
 [node name="TestScene" type="Node"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+transform = Transform3D(-0.5, -0.55667, 0.663414, 0, 0.766044, 0.642788, -0.866025, 0.321394, -0.383022, 0, 100, 0)
 shadow_enabled = true
-shadow_reverse_cull_face = true
+directional_shadow_mode = 0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_wfo73")
@@ -153,6 +153,7 @@ transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 18.4124, -
 shape = SubResource("BoxShape3D_jjt2h")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_mo8c8")
 
 [node name="Node3D" type="Node3D" parent="."]

@@ -5,10 +5,10 @@ README.md::TextFile::-1::1717913458::0::1::::<><>::
 ::res://Models/::1718156560
 TestEnv.glb::PackedScene::7418775098792035614::1718157802::1718157802::1::::<><>::
 ::res://Scenes/::1717913457
-Camera.tscn::PackedScene::2353528418969906829::1717913458::0::1::::<><>::res://Scripts/Camera.gd
+Camera.tscn::PackedScene::2353528418969906829::1718158858::0::1::::<><>::res://Scripts/Camera.gd
 dust_particle_node.tscn::PackedScene::4814235082323514546::1717983298::0::1::::<><>::res://Scripts/dust_particle_node.gd
-PlayerVan.tscn::PackedScene::1994030323487668648::1718157636::0::1::::<><>::res://Scripts/PlayerVan.gd<>uid://caub0pgty8gja::::res://Scenes/dust_particle_node.tscn
-test_scene.tscn::PackedScene::3751134825345995336::1718158102::0::1::::<><>::uid://3n6ngv0e6pn1::::res://Scenes/PlayerVan.tscn<>uid://8scjfg4f5rg4::::res://Scenes/Camera.tscn<>uid://dnkkfk612nhg1::::res://Textures/MaterialAlb_Slice_67_.png
+PlayerVan.tscn::PackedScene::1994030323487668648::1718158194::0::1::::<><>::res://Scripts/PlayerVan.gd<>uid://caub0pgty8gja::::res://Scenes/dust_particle_node.tscn
+test_scene.tscn::PackedScene::3751134825345995336::1718158964::0::1::::<><>::uid://3n6ngv0e6pn1::::res://Scenes/PlayerVan.tscn<>uid://8scjfg4f5rg4::::res://Scenes/Camera.tscn<>uid://dnkkfk612nhg1::::res://Textures/MaterialAlb_Slice_67_.png<>uid://cog7k51cxmbq::::res://Textures/MaterialCmb_Slice_67_.png
 ::res://Scripts/::1717913457
 Camera.gd::GDScript::-1::1717913458::0::1::::<>Marker3D<>::
 dust_particle_node.gd::GDScript::-1::1717982960::0::1::::<>Node3D<>::
